@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-import django_heroku
+# import django_heroku
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +25,7 @@ SECRET_KEY = 'v=sz5p6+=mqqw7$jm)hg=+v*kz6z6o=x3t1xx!i1d0q%5s*&48'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["myrestapiproject55.herokuapp.com"]
 
 
 # Application definition
@@ -42,7 +42,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    # 'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -123,8 +123,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_STORAGE='whitenoise.storage.CompressedManifestStaticFilesStorage'
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
 
-# import dj_database_url
-# prod_db=dj_database_url.config(conn_max_age=500)
-# DATABASES['default'].update(prod_db)
+import dj_database_url
+prod_db=dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(prod_db)
